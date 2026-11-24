@@ -14,7 +14,8 @@
      Boş bırakılırsa “İndir” düğmesi indirme bölümüne kaydırır ve
      orada dosyanın henüz yayında olmadığı yazar.
      ───────────────────────────────────────────────────────────── */
-  const INDIRME_ADRESI = "";
+  const INDIRME_ADRESI = "https://github.com/KeremKeskin047/kollege/releases/download/v0.2.0/Kollege-Kurulum-0.2.0.exe";
+  const INDIRME_BILGISI = "Windows (64 bit), sürüm 0.2.0, 110 MB";   // düğmenin altında görünür
 </script>
 
 <style>
@@ -107,6 +108,8 @@ h2.kontur { font-size: clamp(2.6rem, 5.4vw, 4.75rem); line-height: 1.04; }
 .dugme:hover { background: #ff85c3; transform: translateY(-2px); }
 .dugme:active { transform: none; }
 .acilis .dugme { margin-top: 2.25rem; }
+
+.dosya { margin-top: .9rem; font-size: 1rem; color: var(--soluk); }
 
 /* Defter */
 .sahne { position: relative; isolation: isolate; width: 100%; max-width: 31rem; margin-inline: auto; }
@@ -215,6 +218,7 @@ footer .kap { display: flex; flex-wrap: wrap; justify-content: space-between; ga
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6.5 10 12 15.5 17.5 10M4 20.5h16"/></svg>
         İndir
       </a>
+      <p class="dosya" data-bilgi hidden></p>
     </div>
 
     <figure class="sahne" id="sahne">
@@ -283,6 +287,7 @@ footer .kap { display: flex; flex-wrap: wrap; justify-content: space-between; ga
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6.5 10 12 15.5 17.5 10M4 20.5h16"/></svg>
           İndir
         </a>
+        <p class="dosya" data-bilgi hidden></p>
       </div>
     </div>
   </section>
@@ -314,6 +319,7 @@ footer .kap { display: flex; flex-wrap: wrap; justify-content: space-between; ga
   const durum = document.getElementById("durum");
   document.querySelector('[data-durum="yok"]').hidden = yayinda;
   document.querySelector('[data-durum="var"]').hidden = !yayinda;
+  document.querySelectorAll("[data-bilgi]").forEach((p) => { p.textContent = INDIRME_BILGISI; p.hidden = !yayinda || !INDIRME_BILGISI; });
   document.querySelectorAll("[data-indir]").forEach((a) => {
     if (yayinda) { a.href = adres; return; }
     a.addEventListener("click", (e) => {
