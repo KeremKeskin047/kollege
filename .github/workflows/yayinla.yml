@@ -1,0 +1,19 @@
+name: Kurulum dosyasini yayinla
+on:
+  push:
+    branches: [kurulum-yukleme]
+permissions:
+  contents: write
+jobs:
+  yayinla:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Birlestir ve dogrula
+        run: |
+          cat parca/kurulum.* > Kollege-Kurulum-0.3.0.exe
+          sha256sum -c toplam.sha256
+      - name: Release olustur
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create v0.3.0 Kollege-Kurulum-0.3.0.exe --repo "$GITHUB_REPOSITORY" --target main --title "Kollege 0.3.0" --notes "Windows kurulum dosyasi (64 bit). Almanca ve Turkce arayuz."
