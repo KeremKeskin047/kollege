@@ -13,7 +13,7 @@ jobs:
         run: |
           cat parca/kurulum.* > Kollege-Kurulum-0.4.2.exe
           sha256sum -c toplam.sha256
-      - name: Release olustur
+      - name: Surume ekle
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create v0.4.2 Kollege-Kurulum-0.4.2.exe --repo "$GITHUB_REPOSITORY" --target main --title "Kollege 0.4.2" --notes "Windows kurulum dosyasi (64 bit) ve macOS dosyasi. Sekiz dilde arayuz. Sorulmadan otomatik sifreli yedek, ikinci bilgisayar yalniz kodla eslesir, firmanin kendi fatura ve sozlesme sablonlari."
+        run: gh release upload v0.4.2 Kollege-Kurulum-0.4.2.exe --clobber --repo "$GITHUB_REPOSITORY"
