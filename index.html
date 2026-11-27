@@ -14,8 +14,10 @@
      Boş bırakılırsa “İndir” düğmesi indirme bölümüne kaydırır ve
      orada dosyanın henüz yayında olmadığı yazar.
      ───────────────────────────────────────────────────────────── */
-  const INDIRME_ADRESI = "https://github.com/KeremKeskin047/kollege/releases/download/v0.4.1/Kollege-Kurulum-0.4.1.exe";
-  const INDIRME_BILGISI = "Windows (64 bit), sürüm 0.4.1, 117 MB";   // düğmenin altında görünür
+  const INDIRMELER = {
+    windows: { adres: "https://github.com/KeremKeskin047/kollege/releases/download/v0.4.2/Kollege-Kurulum-0.4.2.exe", bilgi: "Windows 10 ve 11 (64 bit), sürüm 0.4.2, 118 MB" },
+    mac: { adres: "https://github.com/KeremKeskin047/kollege/releases/download/v0.4.2/Kollege-Mac-0.4.2.dmg", bilgi: "macOS 13 ve üzeri (Apple ve Intel işlemci), sürüm 0.4.2, 250 MB" },
+  };
 </script>
 
 <style>
@@ -139,6 +141,9 @@ section { scroll-margin-top: 1.5rem; }
 .durum.vurgu, .durum:focus-visible { border-color: var(--turkuaz); }
 .durum strong { display: block; font: 700 1.625rem/1.2 var(--baslik); color: var(--kagit); }
 .durum p + p { margin-top: .5rem; }
+.secenekler { display: flex; flex-direction: column; gap: 1.25rem; }
+.secenek .dugme { justify-content: center; }
+.durum .not { margin-top: 1.25rem; font-size: .95rem; }
 
 footer { border-top: 1px solid var(--cizgi); }
 footer .kap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; padding-block: 1.75rem max(1.75rem, env(safe-area-inset-bottom, 0px)); color: var(--soluk); font-size: 1rem; }
@@ -316,11 +321,23 @@ footer .kap { display: flex; flex-wrap: wrap; justify-content: space-between; ga
         <p>Yayınlandığında Kollege’yi buradan indirebileceksin.</p>
       </div>
       <div data-durum="var" hidden>
-        <a class="dugme" href="#indir" data-indir>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6.5 10 12 15.5 17.5 10M4 20.5h16"/></svg>
-          İndir
-        </a>
-        <p class="dosya" data-bilgi hidden></p>
+        <div class="secenekler">
+        <div class="secenek">
+          <a class="dugme" href="#indir" data-indir="windows">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6.5 10 12 15.5 17.5 10M4 20.5h16"/></svg>
+            Windows için indir
+          </a>
+          <p class="dosya" data-bilgi="windows"></p>
+        </div>
+        <div class="secenek">
+          <a class="dugme" href="#indir" data-indir="mac">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6.5 10 12 15.5 17.5 10M4 20.5h16"/></svg>
+            Mac için indir
+          </a>
+          <p class="dosya" data-bilgi="mac"></p>
+        </div>
+        </div>
+        <p class="not">Mac’te ilk açılışta uyarı çıkarsa: Sistem Ayarları › Gizlilik ve Güvenlik › Yine de Aç.</p>
       </div>
     </div>
   </section>
@@ -347,22 +364,17 @@ footer .kap { display: flex; flex-wrap: wrap; justify-content: space-between; ga
   const azHareket = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   /* ───────── İndirme ───────── */
-  const adres = String(INDIRME_ADRESI).trim();
-  const yayinda = adres !== "" && adres !== "#";
   const durum = document.getElementById("durum");
-  document.querySelector('[data-durum="yok"]').hidden = yayinda;
-  document.querySelector('[data-durum="var"]').hidden = !yayinda;
-  document.querySelectorAll("[data-bilgi]").forEach((p) => { p.textContent = INDIRME_BILGISI; p.hidden = !yayinda || !INDIRME_BILGISI; });
-  document.querySelectorAll("[data-indir]").forEach((a) => {
-    if (yayinda) { a.href = adres; return; }
-    a.addEventListener("click", (e) => {
-      e.preventDefault();
-      const hedef = document.getElementById("indir");
-      hedef.scrollIntoView({ behavior: azHareket.matches ? "auto" : "smooth", block: "center" });
-      durum.focus({ preventScroll: true });
-      durum.classList.add("vurgu");
-      setTimeout(() => durum.classList.remove("vurgu"), 3500);
-    });
+  document.querySelector('[data-durum="yok"]').hidden = true;
+  document.querySelector('[data-durum="var"]').hidden = false;
+  document.querySelectorAll("a[data-indir]").forEach((a) => {
+    const d = INDIRMELER[a.dataset.indir];
+    if (d) a.href = d.adres;
+  });
+  document.querySelectorAll("p[data-bilgi]").forEach((p) => {
+    const d = INDIRMELER[p.dataset.bilgi];
+    p.textContent = d ? d.bilgi : "Windows ve Mac için, sürüm 0.4.2";
+    p.hidden = false;
   });
 
   /* ───────── Program ekranları: betik yoksa hepsi alt alta durur ───────── */
