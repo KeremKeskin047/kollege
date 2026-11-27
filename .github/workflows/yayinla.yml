@@ -16,4 +16,4 @@ jobs:
       - name: Surum olustur
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create v0.4.4 Kollege-Kurulum-0.4.4.exe --repo "$GITHUB_REPOSITORY" --target main --title "Kollege 0.4.4" --notes "Arayuz duzenlendi: hizli islemler, satirdan odeme, fatura listesi, okunabilirlik ve telefon gorunumu. Genel arama kayda goturur. Alacak dekontu mahsubunda tahsilat toplami, yuzde ve tarih gosterimi ve proje secince musteri atamasi duzeltildi. Fatura sayfasindaki mevzuat metni guncellendi. Windows ve macOS."
+        run: gh release create v0.4.4 Kollege-Kurulum-0.4.4.exe --repo "$GITHUB_REPOSITORY" --target main --title "Kollege 0.4.4" --notes "Arayuz duzenlendi. Yenilikler - hizli islemler, satirdan odeme, fatura listesi, okunabilirlik ve telefon gorunumu. Genel arama kayda goturur. Alacak dekontu mahsubunda tahsilat toplami, yuzde ve tarih gosterimi ve proje secince musteri atamasi duzeltildi. Fatura sayfasindaki mevzuat metni guncellendi. Windows ve macOS."
