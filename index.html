@@ -119,6 +119,9 @@ figcaption { margin-top: 1rem; color: var(--soluk); max-width: 44rem; }
 /* Tanıtım */
 section { scroll-margin-top: 1.5rem; }
 .tanitim { padding-block: var(--bosluk) 0; }
+.film { padding-block: var(--bosluk) 0; }
+.film h2 { margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+.film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
 .ekranlar { padding-block: var(--bosluk); }
 .tanitim-giris { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: 1.5rem clamp(3rem, 7vw, 6.5rem); align-items: end; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
 .tanitim-giris p { max-width: 34rem; color: var(--soluk); }
@@ -184,6 +187,7 @@ footer .kap { display: flex; flex-wrap: wrap; justify-content: space-between; ga
 <header class="kap ust">
   <a class="marka" href="#ust">Kollege</a>
   <nav aria-label="Sayfa bölümleri">
+    <a href="#film">Film</a>
     <a href="#tanitim">Tanıtım</a>
     <a href="#indir">İndirme</a>
   </nav>
@@ -209,6 +213,19 @@ footer .kap { display: flex; flex-wrap: wrap; justify-content: space-between; ga
         </picture>
     </figure>
     <p class="not">Ekran görüntüleri programın kendisine aittir. Program sekiz dilde kullanılabilir. Firma, kişiler ve rakamlar örnektir.</p>
+  </section>
+
+  <section class="kap film" id="film">
+    <h2 class="kontur">Kollege’yi izle.</h2>
+    <figure>
+      <div class="pencere">
+        <video controls playsinline preload="none" poster="tanitim.jpg" width="1920" height="1080" aria-label="Kollege tanıtım filmi">
+          <source src="tanitim.mp4" type="video/mp4">
+          <a href="tanitim.mp4">Filmi indir</a>
+        </video>
+      </div>
+      <figcaption>Tanıtım filmi (Almanca, 1 dakika 17 saniye).</figcaption>
+    </figure>
   </section>
 
   <section class="kap tanitim" id="tanitim">
