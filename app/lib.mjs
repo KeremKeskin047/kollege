@@ -242,11 +242,19 @@ export async function readJson(file, fallback) {
     return fallback;
   }
 }
-export async function writeJson(file, value) {
+const writing = new Map();
+/** Aynı dosyaya aynı anda gelen yazımlar sıraya girer: geçici dosya paylaşıldığı için yoksa biri hata verir */
+export function writeJson(file, value) {
+  const text = JSON.stringify(value); // çağrıldığı andaki hâli
+  const next = (writing.get(file) ?? Promise.resolve()).catch(() => undefined).then(() => writeText(file, text));
+  writing.set(file, next);
+  return next;
+}
+async function writeText(file, text) {
   await mkdir(dirname(file), { recursive: true });
   const h = await open(`${file}.tmp`, 'w');
   try {
-    await h.writeFile(JSON.stringify(value), 'utf8');
+    await h.writeFile(text, 'utf8');
     await h.sync();
   } finally {
     await h.close();
