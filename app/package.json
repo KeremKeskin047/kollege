@@ -1,7 +1,7 @@
 {
   "name": "kollege",
   "productName": "Kollege",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Kollege – Baustellen- und Betriebsverwaltung",
   "author": "Kollege",
   "main": "main.mjs",

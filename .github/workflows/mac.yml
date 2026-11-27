@@ -28,7 +28,7 @@ jobs:
       - name: Dene
         run: node dene.mjs
       - name: Surume ekle
-        run: gh release upload v0.4.2 cikti/Kollege-Mac-0.4.2.dmg --clobber --repo "$GITHUB_REPOSITORY"
+        run: gh release upload v0.4.3 cikti/Kollege-Mac-0.4.3.dmg --clobber --repo "$GITHUB_REPOSITORY"
       - name: Sonuclari yaz
         if: always()
         run: |
