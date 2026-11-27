@@ -15,8 +15,8 @@
      orada dosyanın henüz yayında olmadığı yazar.
      ───────────────────────────────────────────────────────────── */
   const INDIRMELER = {
-    windows: { adres: "https://github.com/KeremKeskin047/kollege/releases/download/v0.4.2/Kollege-Kurulum-0.4.2.exe", bilgi: "Windows 10 ve 11 (64 bit), sürüm 0.4.2, 118 MB" },
-    mac: { adres: "https://github.com/KeremKeskin047/kollege/releases/download/v0.4.2/Kollege-Mac-0.4.2.dmg", bilgi: "macOS 13 ve üzeri (Apple ve Intel işlemci), sürüm 0.4.2, 250 MB" },
+    windows: { adres: "https://github.com/KeremKeskin047/kollege/releases/download/v0.4.3/Kollege-Kurulum-0.4.3.exe", bilgi: "Windows 10 ve 11 (64 bit), sürüm 0.4.3, 118 MB" },
+    mac: { adres: "https://github.com/KeremKeskin047/kollege/releases/download/v0.4.3/Kollege-Mac-0.4.3.dmg", bilgi: "macOS 13 ve üzeri (Apple ve Intel işlemci), sürüm 0.4.3, 250 MB" },
   };
 </script>
 
@@ -390,7 +390,7 @@ footer .kap { display: flex; flex-wrap: wrap; justify-content: space-between; ga
   });
   document.querySelectorAll("p[data-bilgi]").forEach((p) => {
     const d = INDIRMELER[p.dataset.bilgi];
-    p.textContent = d ? d.bilgi : "Windows ve Mac için, sürüm 0.4.2";
+    p.textContent = d ? d.bilgi : "Windows ve Mac için, sürüm 0.4.3";
     p.hidden = false;
   });
 
