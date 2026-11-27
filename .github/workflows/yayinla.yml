@@ -11,9 +11,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Birlestir ve dogrula
         run: |
-          cat parca/kurulum.* > Kollege-Kurulum-0.4.3.exe
+          cat parca/kurulum.* > Kollege-Kurulum-0.4.4.exe
           sha256sum -c toplam.sha256
       - name: Surum olustur
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create v0.4.3 Kollege-Kurulum-0.4.3.exe --repo "$GITHUB_REPOSITORY" --target main --title "Kollege 0.4.3" --notes "Almanca arayuzde Turkce kalan yazilar duzeltildi (gun adlari, muhasebe defteri, ciktilar, ilk kurulum formu). Dar pencere gorunumu ve harita hatasi duzeltildi. Windows ve macOS."
+        run: gh release create v0.4.4 Kollege-Kurulum-0.4.4.exe --repo "$GITHUB_REPOSITORY" --target main --title "Kollege 0.4.4" --notes "Arayuz duzenlendi: hizli islemler, satirdan odeme, fatura listesi, okunabilirlik ve telefon gorunumu. Genel arama kayda goturur. Alacak dekontu mahsubunda tahsilat toplami, yuzde ve tarih gosterimi ve proje secince musteri atamasi duzeltildi. Fatura sayfasindaki mevzuat metni guncellendi. Windows ve macOS."
