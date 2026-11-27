@@ -11,9 +11,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Birlestir ve dogrula
         run: |
-          cat parca/kurulum.* > Kollege-Kurulum-0.4.1.exe
+          cat parca/kurulum.* > Kollege-Kurulum-0.4.2.exe
           sha256sum -c toplam.sha256
       - name: Release olustur
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create v0.4.1 Kollege-Kurulum-0.4.1.exe --repo "$GITHUB_REPOSITORY" --target main --title "Kollege 0.4.1" --notes "Windows kurulum dosyasi (64 bit). Sekiz dilde arayuz (Almanca, Turkce, Ingilizce, Fransizca, Ispanyolca, Felemenkce, Lehce, Arapca). Ikinci bilgisayar yalniz kodla eslesir."
+        run: gh release create v0.4.2 Kollege-Kurulum-0.4.2.exe --repo "$GITHUB_REPOSITORY" --target main --title "Kollege 0.4.2" --notes "Windows kurulum dosyasi (64 bit) ve macOS dosyasi. Sekiz dilde arayuz. Sorulmadan otomatik sifreli yedek, ikinci bilgisayar yalniz kodla eslesir, firmanin kendi fatura ve sozlesme sablonlari."
