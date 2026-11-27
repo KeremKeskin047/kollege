@@ -1,0 +1,42 @@
+name: Mac surumu
+on:
+  push:
+    branches: [mac-derleme]
+permissions:
+  contents: write
+jobs:
+  mac:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    env:
+      GH_TOKEN: ${{ github.token }}
+      CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Araclar
+        run: npm i --no-audit --no-fund electron-builder@26.18.0 electron@45.4.1
+      - name: Derle
+        run: |
+          mkdir -p sonuc
+          node derle.mjs 2>&1 | tee sonuc/derle.log
+      - name: Dene
+        run: node dene.mjs
+      - name: Surume ekle
+        run: gh release upload v0.4.2 cikti/Kollege-Mac-0.4.2.dmg --clobber --repo "$GITHUB_REPOSITORY"
+      - name: Sonuclari yaz
+        if: always()
+        run: |
+          mkdir -p /tmp/sonuc && cp -R sonuc/. /tmp/sonuc/ || true
+          cd /tmp/sonuc
+          echo "${{ job.status }}" > durum.txt
+          git init -q
+          git checkout -q -b mac-sonuc
+          git add .
+          git -c user.name=kollege-ci -c user.email=kollege-ci@users.noreply.github.com commit -qm "Mac derleme sonucu ${GITHUB_RUN_ID}"
+          git push -qf "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" mac-sonuc

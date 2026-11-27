@@ -1,0 +1,12 @@
+{
+  "name": "kollege",
+  "productName": "Kollege",
+  "version": "0.4.2",
+  "description": "Kollege – Baustellen- und Betriebsverwaltung",
+  "author": "Kollege",
+  "main": "main.mjs",
+  "type": "module",
+  "kollegeUpdate": "https://kollege.be/surum.json",
+  "kollegeLicense": "https://kollege-lisans.kollege.workers.dev",
+  "kollegeBuy": "https://kollege.be/"
+}

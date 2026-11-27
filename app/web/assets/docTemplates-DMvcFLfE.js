@@ -1,0 +1,1 @@
+import"./templatePdf-CJ-yGXP-.js";export{a as checkSpec}from"./docTemplates-CUfuPqrg.js";

@@ -1,0 +1,1 @@
+export{i as PDFDocument}from"./es-8eMFOCW_.js";

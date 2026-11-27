@@ -1,0 +1,1 @@
+import{n as e}from"./legacy-ESwP1bPJ.js";import{t}from"./db-DgNTfKSJ.js";export{e as DB_NAME,t as KollegeDB};

@@ -1,0 +1,1 @@
+var e=()=>typeof window>`u`?null:window.terra??null,t=()=>e()!==null;export{e as n,t};
