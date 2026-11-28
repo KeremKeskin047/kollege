@@ -60,7 +60,16 @@ async function start() {
   const allowed = new Set(['clipboard-sanitized-write', 'persistent-storage']);
   session.defaultSession.setPermissionRequestHandler((wc, p, cb) => cb(allowed.has(p) && isOwn(wc.getURL())));
   session.defaultSession.setPermissionCheckHandler((wc, p, origin) => allowed.has(p) && origin.startsWith(ORIGIN));
-  session.defaultSession.on('will-download', (_e, item) => item.setSaveDialogOptions({ defaultPath: join(app.getPath('documents'), item.getFilename()) }));
+  session.defaultSession.on('will-download', (_e, item) => {
+    item.setSaveDialogOptions({ defaultPath: join(app.getPath('documents'), item.getFilename()) });
+    // Kullanıcı dosyayı aramasın: programın ürettiği PDF açılır, diğer dosyalar klasöründe gösterilir
+    item.once('done', (_ev, state) => {
+      if (state !== 'completed' || !isOwnBlob(item.getURL())) return;
+      const file = item.getSavePath();
+      if (file.toLowerCase().endsWith('.pdf')) void shell.openPath(file);
+      else shell.showItemInFolder(file);
+    });
+  });
   open();
 }
 
