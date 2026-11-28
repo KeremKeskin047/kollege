@@ -1,0 +1,13 @@
+✓ paket: program açıldı, ilk ekran geldi
+✓ paket: sürüm 0.4.5
+✓ paket: Mac donanım numarasından bilgisayar numarası okundu
+✓ paket: hata yok 
+✓ işleyiş: işletme formu geldi
+✓ işleyiş: işletme kuruldu
+✓ işleyiş: eşitleme anahtarı Anahtar Zinciri ile saklanıp okundu
+✓ işleyiş: sorulmadan şifreli yedek yazıldı (kollege-gecmis-5e7e3fc2.sifreli.json, kollege-oto-5e7e3fc2-2026-11-28.sifreli.json)
+✓ işleyiş: şablonlar sayfası açıldı
+✓ işleyiş: PDF önizlemesi çizildi
+✓ işleyiş: yazdırma sayfası açıldı
+✓ işleyiş: hata yok 
+Hepsi tamam

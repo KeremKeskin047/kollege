@@ -1,0 +1,5 @@
+
+DevTools listening on ws://127.0.0.1:9334/devtools/browser/4af6f1eb-a59d-4d31-ba14-5d2815e97f45
+(electron) 'safeStorage.isEncryptionAvailable' is deprecated and will be removed. Please use 'safeStorage.isAsyncEncryptionAvailable' instead.
+(electron) 'safeStorage.encryptString' is deprecated and will be removed. Please use 'safeStorage.encryptStringAsync' instead.
+(electron) 'safeStorage.decryptString' is deprecated and will be removed. Please use 'safeStorage.decryptStringAsync' instead.
